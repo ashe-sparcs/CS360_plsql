@@ -19,9 +19,6 @@ BEGIN
   END LOOP;
   RETURN v_center_price;
 END;
-
 /
-
-
 --- COMMIT DML COMMANDS
 COMMIT;

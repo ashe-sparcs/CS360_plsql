@@ -18,8 +18,6 @@ EXCEPTION
   WHEN dup_val_on_index THEN
     raise_application_error(-20001, 'Duplication index');
 END;
-
 /
-
 --- COMMIT DML COMMANDS
 COMMIT;
