@@ -5,8 +5,13 @@ BEFORE INSERT ON product
   DECLARE
     max_product_num NUMBER;
   BEGIN
-    max_product_num := (SELECT max(product_num) FROM (SELECT maker, count(maker) AS product_num FROM product GROUP BY maker));
-    IF 9 < max_product_num THEN
+    FOR product_cursor IN (SELECT maker, count(maker) AS product_num FROM product GROUP BY maker)
+    LOOP
+      IF product_cursor.product_num > max_product_num THEN
+        max_product_num := product_cursor.product_num;
+      END IF;
+    END LOOP;
+    IF max_product_num > 9 THEN
       raise_application_error (-20000, 'Every maker can have at most 10 products.');
     END IF;
   END;
