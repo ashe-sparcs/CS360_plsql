@@ -8,8 +8,8 @@
 
 	//Set the database access information as constants
 	require_once('DB.php');
-	DEFINE('DB_USER','s20160000');
-	DEFINE('DB_PASSWORD','s20160000');
+	DEFINE('DB_USER','s20140679');
+	DEFINE('DB_PASSWORD','elqldhkdrlaelql');
 	DEFINE('DB_ADDR','oci8://'.DB_USER.':'.DB_PASSWORD.'@dbclick.kaist.ac.kr:1521/orcl');
 
 	$conn = DB::connect(DB_ADDR);
@@ -36,6 +36,6 @@
 	    echo 'Standard Code: ' . $conn->getCode() . "<br/>";
 	    echo 'DBMS/User Message: ' . $conn->getUserInfo() . "<br/>";
 	    echo 'DBMS/Debug Message: ' . $conn->getDebugInfo() . "<br/>";
-	}	
+    }
 	}
 ?>
