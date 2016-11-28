@@ -3,7 +3,19 @@
 		$price=0;
 		//implement
 		// DO NOT USE A PL/SQL STORED FUNCTION
-
+        $sum_min=INF;
+		$pc_cursor = $conn->query("select price from pc");
+		while($tuple = $pc_cursor->fetchRow()) {
+			$sum_temp=0;
+			$pc_cursor2 = $conn->query("select price from pc");
+			while($tuple2 = $pc_cursor2->fetchRow()) {
+				$sum_temp += abs($tuple["price"] - $tuple2["price"]);
+			}
+			if ($sum_temp < $sum_min) {
+				$sum_min = $sum_temp;
+				$price = $tuple["price"];
+			}
+		}
 		return $price;
 	}
 ?>
