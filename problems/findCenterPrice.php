@@ -9,11 +9,11 @@
 			$sum_temp=0;
 			$pc_cursor2 = $conn->query("select price from pc");
 			while($tuple2 = $pc_cursor2->fetchRow()) {
-				$sum_temp += abs($tuple["price"] - $tuple2["price"]);
+				$sum_temp += abs($tuple[0] - $tuple2[0]);
 			}
 			if ($sum_temp < $sum_min) {
 				$sum_min = $sum_temp;
-				$price = $tuple["price"];
+				$price = $tuple[0];
 			}
 		}
 		return $price;
