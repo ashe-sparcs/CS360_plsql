@@ -16,7 +16,7 @@ BEGIN
     VALUES (v_model, v_speed, v_ram, v_hd, v_price);
 EXCEPTION
   WHEN dup_val_on_index THEN
-    raise_application_error(-20001, 'Duplication index');
+    raise_application_error(-20001, 'Duplicated index');
 END;
 /
 --- COMMIT DML COMMANDS
