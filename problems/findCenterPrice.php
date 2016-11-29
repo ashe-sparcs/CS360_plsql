@@ -5,15 +5,18 @@
 		// DO NOT USE A PL/SQL STORED FUNCTION
         $sum_min=INF;
 		$pc_cursor = $conn->query("select price from pc");
+		$price_list = array();
 		while($tuple = $pc_cursor->fetchRow()) {
+			array_push($price_list, $tuple[0]);
+		}
+		foreach ($price_list as $price_elem1) {
 			$sum_temp=0;
-			$pc_cursor2 = $conn->query("select price from pc");
-			while($tuple2 = $pc_cursor2->fetchRow()) {
-				$sum_temp += abs($tuple[0] - $tuple2[0]);
+			foreach ($price_list as $price_elem2) {
+				$sum_temp += abs($price_elem1 - $price_elem2);
 			}
 			if ($sum_temp < $sum_min) {
 				$sum_min = $sum_temp;
-				$price = $tuple[0];
+				$price = $price_elem1;
 			}
 		}
 		return $price;
